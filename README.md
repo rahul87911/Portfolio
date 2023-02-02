@@ -13,7 +13,6 @@ Please visit the link : https://rahul8709-portfolio.netlify.app/
 - The frontend of this webapp is built using `React js` ,`framer-motion` and `sass`.
 - It is fetching data from a backend built on `sanity`.
 - This website is easily managable and upgradable, without any use of coding, via `sanity-studio`.
-- As this web-app contains personal informations so I cant provide you the source-code directly, to get access you have to make a request of approval through mail or from the form in this website. 
 
 # Functionalities
 
