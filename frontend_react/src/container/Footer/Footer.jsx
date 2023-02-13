@@ -4,8 +4,26 @@ import { images } from '../../constants';
 import { AppWrap, MotionWrap } from '../../wrapper';
 import { client } from '../../client';
 import './Footer.scss';
+import { useRef } from 'react';
+import emailjs from 'emailjs-com';
+
+
 
 const Footer = () => {
+
+  const form = useRef ();
+
+  const sendEmail = (e) => {
+    e.preventDefault();
+
+    emailjs.sendForm('service_bzmwivj', 'template_tmpcd38', form.current, 'ch0XZnh06jqgVRkPp')
+      .then((result) => {
+          console.log(result.text);
+      }, (error) => {
+          console.log(error.text);
+      });
+  };
+
   const [formData, setFormData] = useState({ name: '', email: '', message: '' });
   const [isFormSubmitted, setIsFormSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
@@ -49,8 +67,9 @@ const Footer = () => {
           <a href="tel:+91 8709112886" className="p-text">+91 8709112886</a>
         </div>
       </div>
-      {!isFormSubmitted ? (
-        <div className="app__footer-form app__flex">
+      <form ref={form} onSubmit={sendEmail} className="app__footer-form  app__flex">
+      {!isFormSubmitted  ?  (
+        <div className="app__footer-form  app__flex">
           <div className="app__flex">
             <input className="p-text" type="text" placeholder="Your Name" name="username" value={username} onChange={handleChangeInput} />
           </div>
@@ -66,7 +85,7 @@ const Footer = () => {
               onChange={handleChangeInput}
             />
           </div>
-          <button type="button" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
+          <button type="submit" className="p-text" onClick={handleSubmit}>{!loading ? 'Send Message' : 'Sending...'}</button>
         </div>
       ) : (
         <div>
@@ -75,6 +94,7 @@ const Footer = () => {
           </h3>
         </div>
       )}
+      </form>
     </>
   );
 };
